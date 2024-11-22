@@ -6,23 +6,24 @@ function Dashboard() {
   const [activeTab, setActiveTab] = useState("users");
 
   return (
-    <div className="dashboard">
-      <nav className="dashboard-nav flex justify-center bg-gray-800 py-4">
+    <div className="dashboard min-h-screen bg-gray-100">
+      {/* Navigation */}
+      <nav className="dashboard-nav flex justify-center bg-gradient-to-r from-indigo-600 via-purple-500 to-indigo-600 py-4 shadow-lg">
         <button
-          className={`mx-2 px-6 py-2 rounded-full font-semibold ${
+          className={`mx-2 px-6 py-2 rounded-full font-semibold transition-all duration-300 ${
             activeTab === "users"
-              ? "bg-blue-500 text-white"
-              : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+              ? "bg-white text-indigo-600 shadow-md"
+              : "bg-indigo-700 text-white hover:bg-indigo-600"
           }`}
           onClick={() => setActiveTab("users")}
         >
           User Management
         </button>
         <button
-          className={`mx-2 px-6 py-2 rounded-full font-semibold ${
+          className={`mx-2 px-6 py-2 rounded-full font-semibold transition-all duration-300 ${
             activeTab === "roles"
-              ? "bg-green-500 text-white"
-              : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+              ? "bg-white text-purple-600 shadow-md"
+              : "bg-purple-700 text-white hover:bg-purple-600"
           }`}
           onClick={() => setActiveTab("roles")}
         >
@@ -30,8 +31,17 @@ function Dashboard() {
         </button>
       </nav>
 
+      {/* Content */}
       <div className="dashboard-content p-6">
-        {activeTab === "users" ? <UserTable /> : <RoleTable />}
+        {activeTab === "users" ? (
+          <div className="bg-white p-4 rounded-lg shadow-md">
+            <UserTable />
+          </div>
+        ) : (
+          <div className="bg-white p-4 rounded-lg shadow-md">
+            <RoleTable />
+          </div>
+        )}
       </div>
     </div>
   );
